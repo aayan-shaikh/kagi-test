@@ -6,36 +6,8 @@
   align-items: flex-start;
 }
 
-#toggle1,
-#toggle2,
-#toggle3 {
+.widget input[type="checkbox"] {
   display: none;
-}
-
-.show-less {
-  display: none;
-  background-color: rgb(19, 19, 19);
-  color: rgb(230, 230, 230);
-  text-align: center;
-  margin-block: 1rem;
-  padding-block: 0.5rem;
-  text-transform: uppercase;
-  font-size: 0.9rem;
-  border-radius: 0.2rem;
-  letter-spacing: 0.5px;
-}
-
-.widget .show-more {
-  display: block;
-  background-color: rgb(19, 19, 19);
-  color: rgb(230, 230, 230);
-  text-align: center;
-  margin-block: 1rem;
-  padding-block: 0.5rem;
-  text-transform: uppercase;
-  font-size: 0.9rem;
-  border-radius: 0.2rem;
-  letter-spacing: 0.5px;
 }
 
 .widget p {
@@ -44,10 +16,6 @@
   max-height: 15em;
   overflow: hidden;
   position: relative;
-}
-
-.widget .show-more {
-  display: none;
 }
 
 .widget p::after {
@@ -60,47 +28,39 @@
   background: linear-gradient(transparent, rgba(242, 242, 242, 0.6));
 }
 
-.widget:has(p[style*="max-height: none"]) p::after {
+.show-more,
+.show-less {
+  display: block;
+  background-color: rgb(19, 19, 19);
+  color: rgb(230, 230, 230);
+  text-align: center;
+  margin-block: 1rem;
+  padding-block: 0.5rem;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  border-radius: 0.2rem;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+}
+
+.show-less {
   display: none;
 }
 
-.widget p:not([style*="max-height"]) ~ .show-more {
-  display: block;
-}
-
-.widget:has(#toggle1:checked) p {
+/* When any show button is pressed  */
+.widget:has(input:checked) p {
   max-height: none;
 }
 
-.widget:has(#toggle1:checked) .show-more {
+.widget:has(input:checked) p::after {
   display: none;
 }
 
-.widget:has(#toggle1:checked) .show-less {
-  display: block;
-}
-
-.widget:has(#toggle2:checked) p {
-  max-height: none;
-}
-
-.widget:has(#toggle2:checked) .show-more {
+.widget:has(input:checked) .show-more {
   display: none;
 }
 
-.widget:has(#toggle2:checked) .show-less {
-  display: block;
-}
-
-.widget:has(#toggle3:checked) p {
-  max-height: none;
-}
-
-.widget:has(#toggle3:checked) .show-more {
-  display: none;
-}
-
-.widget:has(#toggle3:checked) .show-less {
+.widget:has(input:checked) .show-less {
   display: block;
 }
 
@@ -113,8 +73,13 @@
   box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.02);
 }
 
+/* Short class override */
 .short p {
   max-height: none;
+}
+
+.short p::after {
+  display: none;
 }
 
 .short .show-more {
