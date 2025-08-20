@@ -1,3 +1,57 @@
-<h1>Kagi HTML Challenge - Aayan Shaikh</h1>
-            <p>Time taken to complete: ~2 hours</p>
-            <p>Thank you for considering me in your application process!</p>
+# Kagi HTML and JS Challenge - Aayan Shaikh
+aayan@aayanshaikh.com
+
+Hey! I spent about 6 hours working on these challenges and had a lot of fun with them. Here's what I built:
+
+## What's Inside
+
+I tackled two interesting problems: building expandable recipe widgets without any JavaScript, and optimising a court scheduling algorithm.
+
+## Task 1 - HTML Recipes Widget
+
+The goal was to create recipe widgets that expand and collapse, but here's the catch - no JavaScript allowed!
+
+I built two different versions in the `./html-recipes/` folder:
+- One with ingredient checkboxes that you can actually check off
+- Another with paragraph text for longer recipe instructions
+
+The trick was using CSS's `:checked` selector and some clever sibling combinators to make the "Show more/Show less" functionality work. It was pretty satisfying to pull off the animations with pure CSS.
+
+## Task 2 - JavaScript Optimisation
+
+You need to figure out when your hearing will end based on alphabetical order and the number of available judges.
+
+I started with the obvious approach, sort everyone's names and find my position:
+
+```javascript
+function slowCourt(myName, judges, otherNames) {
+    const allNames = [...otherNames.split(" "), myName];
+    allNames.sort();
+    const myIndex = allNames.indexOf(myName);
+    return (Math.floor(myIndex / judges) + 1) * 30;
+}
+```
+
+But then I realised I don't actually need to sort the entire list, I just need to know how many people come before me alphabetically:
+
+```javascript
+function fastCourt(myName, judges, otherNames) {
+    const others = otherNames.split(" ");
+    let countBefore = 0;
+    for (let i = 0; i < others.length; i++) {
+        if (others[i] < myName) countBefore++;
+    }
+    return (Math.floor(countBefore / judges) + 1) * 30;
+}
+```
+
+This simple change dropped the complexity from O(n log n) to O(n), which makes a big difference with larger datasets.
+
+## What You'll Find
+```
+./js-optimisation/index.js  # The court scheduling solution with benchmarks
+./html-recipes/             # Both recipe widget implementations
+./README.md                 # You're reading it!
+```
+
+Thanks for giving me an opportunity!
