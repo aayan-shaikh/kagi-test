@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kagi HTML Challenge Home Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Lato';
+            background-color: #fcfcfc;
+        }
+
+        main {
+            max-width: 70ch;
+            margin-inline: auto;
+            padding-top: 6rem;
+        }
+
+        .snippets {
+            display: flex;
+            margin-inline: auto;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        code {
+            border-radius: 0.5rem;
+
+        }
+
+        .buttons {
+            display: flex;
+            gap: 2rem;
+        }
+
+
+        button {
+            border: none;
+            padding: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease-out;
+            background-color: gray;
+            color: white;
+        }
+
+        button:hover {
+            background-color: darkgray;
+            color: black;
+
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <section class="intro">
+            <h1>Kagi HTML Challenge - Aayan Shaikh</h1>
+            <p>Time taken to complete: ~2 hours</p>
+            <p>Thank you for considering me in your application process!</p>
+            <h3>Solution:</h3>
+            <div class="buttons">
+                <a href="checkboxes/index.html"><button>Checkboxes</button></a>
+                <a href="paragraphs/index.html"><button>Paragraphs</button></a>
+            </div>
+        </section>
+        <section class="description">
+            <h2>Methodology</h2>
+            <p>This challenge was particularly tricky for me due to the simple nature of the task made substantially
+                more difficult by a set of unique constraints, particularly <em>using no javacript!</em></p>
+            <p>I solved the task using complex <code>:has()</code> css selector rules, please find some snippets below
+                for
+                easy skimming</p>
+            <p>Additionally I could not come to a pure html/css only solution to solve the problem of dynamic paragraph
+                line detection so I used a <code>.short</code> class to the paragraph under 10 lines to simulate the
+                desired behaviour</p>
+
+
+            <div class="snippets">
+                <pre>
+                    <code class="language-css" lang="css"> <b>/checkboxes/widget.css</b><br>
+                        <br>
+
+                        section.widgets {
+                      display: flex;
+                      gap: 1rem;
+                      justify-content: space-around;
+                      padding: 6rem;
+                      align-items: flex-start;
+                    }
+                
+                    #toggle1,
+                    #toggle2,
+                    #toggle3 {
+                      display: none;
+                    }
+                
+                    .show-less {
+                      display: none;
+                      background-color: rgb(19, 19, 19);
+                      color: rgb(230, 230, 230);
+                      text-align: center;
+                      margin-block: 1rem;
+                      padding-block: 0.5rem;
+                      text-transform: uppercase;
+                      font-size: 0.9rem;
+                      border-radius: 0.2rem;
+                      letter-spacing: 0.5px;
+                    }
+                
+                    .widget .show-more {
+                      display: none;
+                      background-color: rgb(19, 19, 19);
+                      color: rgb(230, 230, 230);
+                      text-align: center;
+                      margin-block: 1rem;
+                      padding-block: 0.5rem;
+                      text-transform: uppercase;
+                      font-size: 0.9rem;
+                      border-radius: 0.2rem;
+                      letter-spacing: 0.5px;
+                    }
+                
+                    .widget:has(ul > li:nth-child(11)) .show-more {
+                      display: block;
+                    }
+                
+                    .widget:has(ul > li:nth-child(11)) ul li:nth-child(n + 11) {
+                      display: none;
+                    }
+                
+                    .widget:has(#toggle1:checked) ul li:nth-child(n + 11) {
+                      display: list-item;
+                    }
+                
+                    .widget:has(#toggle1:checked) .show-more {
+                      display: none;
+                    }
+                
+                    .widget:has(#toggle1:checked) .show-less {
+                      display: block;
+                    }
+                
+                    .widget:has(#toggle2:checked) ul li:nth-child(n + 11) {
+                      display: list-item;
+                    }
+                
+                    .widget:has(#toggle2:checked) .show-more {
+                      display: none;
+                    }
+                
+                    .widget:has(#toggle2:checked) .show-less {
+                      display: block;
+                    }
+                
+                    .widget:has(#toggle3:checked) ul li:nth-child(n + 11) {
+                      display: list-item;
+                    }
+                
+                    .widget:has(#toggle3:checked) .show-more {
+                      display: none;
+                    }
+                
+                    .widget:has(#toggle3:checked) .show-less {
+                      display: block;
+                    }
+                
+                    ul {
+                      margin: 0;
+                      padding: 0;
+                      list-style: none;
+                    }
+                
+                    .card {
+                      background-color: rgb(242, 242, 242);
+                      padding-inline: 2rem;
+                      padding-block: 4rem;
+                      border-radius: 0.2rem;
+                      width: 100%;
+                      box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.02);
+                      /* max-width: fit-content; */
+                    }
+                
+                    input[type="checkbox"]:checked + span {
+                      text-decoration: line-through;
+                    }
+                    </code>
+                </pre>
+                <pre>
+                    <code lang="css"> <b>/paragraphs/widget.css</b><br>
+                        <br>
+                    .widgets {
+                    display: flex;
+                    gap: 1rem;
+                    justify-content: space-around;
+                    padding: 6rem;
+                    align-items: flex-start;
+                    }
+                
+                    #toggle1,
+                    #toggle2,
+                    #toggle3 {
+                    display: none;
+                    }
+                
+                    .show-less {
+                    display: none;
+                    background-color: rgb(19, 19, 19);
+                    color: rgb(230, 230, 230);
+                    text-align: center;
+                    margin-block: 1rem;
+                    padding-block: 0.5rem;
+                    text-transform: uppercase;
+                    font-size: 0.9rem;
+                    border-radius: 0.2rem;
+                    letter-spacing: 0.5px;
+                    }
+                
+                    .widget .show-more {
+                    display: block;
+                    background-color: rgb(19, 19, 19);
+                    color: rgb(230, 230, 230);
+                    text-align: center;
+                    margin-block: 1rem;
+                    padding-block: 0.5rem;
+                    text-transform: uppercase;
+                    font-size: 0.9rem;
+                    border-radius: 0.2rem;
+                    letter-spacing: 0.5px;
+                    }
+                
+                    .widget p {
+                    line-height: 1.5;
+                    margin: 0;
+                    max-height: 15em;
+                    overflow: hidden;
+                    position: relative;
+                    }
+                
+                    .widget .show-more {
+                    display: none;
+                    }
+                
+                    .widget p::after {
+                    content: "";
+                    position: absolute;
+                    bottom: 0;
+                    right: 0;
+                    width: 100%;
+                    height: 1.5em;
+                    background: linear-gradient(transparent, rgba(242, 242, 242, 0.6));
+                    }
+                
+                    .widget:has(p[style*="max-height: none"]) p::after {
+                    display: none;
+                    }
+                
+                    .widget p:not([style*="max-height"]) ~ .show-more {
+                    display: block;
+                    }
+                
+                    .widget:has(#toggle1:checked) p {
+                    max-height: none;
+                    }
+                
+                    .widget:has(#toggle1:checked) .show-more {
+                    display: none;
+                    }
+                
+                    .widget:has(#toggle1:checked) .show-less {
+                    display: block;
+                    }
+                
+                    .widget:has(#toggle2:checked) p {
+                    max-height: none;
+                    }
+                
+                    .widget:has(#toggle2:checked) .show-more {
+                    display: none;
+                    }
+                
+                    .widget:has(#toggle2:checked) .show-less {
+                    display: block;
+                    }
+                
+                    .widget:has(#toggle3:checked) p {
+                    max-height: none;
+                    }
+                
+                    .widget:has(#toggle3:checked) .show-more {
+                    display: none;
+                    }
+                
+                    .widget:has(#toggle3:checked) .show-less {
+                    display: block;
+                    }
+                
+                    .card {
+                    background-color: rgb(242, 242, 242);
+                    padding-inline: 2rem;
+                    padding-block: 4rem;
+                    border-radius: 0.2rem;
+                    width: 100%;
+                    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.02);
+                    }
+                
+                    .short p {
+                    max-height: none;
+                    }
+                
+                    .short .show-more {
+                    display: none !important;
+                    }
+                    </code>
+                </pre>
+            </div>
+        </section>
+    </main>
+    <script>hljs.highlightAll();</script>
+
+</body>
+
+</html>
