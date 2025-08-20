@@ -9,7 +9,7 @@ I tackled two interesting problems: building expandable recipe widgets without a
 
 ## Task 1 - HTML Recipes Widget
 
-The goal was to create recipe widgets that expand and collapse, but here's the catch - no JavaScript allowed!
+The goal was to create recipe widgets that expand and collapse, but no JavaScript allowed !
 
 ## Task 2 - JavaScript Optimisation
 
