@@ -11,15 +11,9 @@ I tackled two interesting problems: building expandable recipe widgets without a
 
 The goal was to create recipe widgets that expand and collapse, but here's the catch - no JavaScript allowed!
 
-I built two different versions in the `./html-recipes/` folder:
-- One with ingredient checkboxes that you can actually check off
-- Another with paragraph text for longer recipe instructions
-
-The trick was using CSS's `:checked` selector and some clever sibling combinators to make the "Show more/Show less" functionality work. It was pretty satisfying to pull off the animations with pure CSS.
-
 ## Task 2 - JavaScript Optimisation
 
-You need to figure out when your hearing will end based on alphabetical order and the number of available judges.
+I needed to figure out when the hearing will end based on alphabetical order and the number of available judges.
 
 I started with the obvious approach, sort everyone's names and find my position:
 
